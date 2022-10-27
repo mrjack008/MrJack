@@ -1,0 +1,75 @@
+  <main class="main" id="main">
+
+  <head>
+
+    
+  </head>
+  <body>  
+    
+
+
+
+<section >
+  <div class="container pt-5 ">
+    <div class="row mt-4 mb-4 ms-5 ">
+      {{!-- <a href="/admin/add-user" class="btn btn-success ms-auto w-auto">Add User</a> --}}
+    </div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">No</th>
+       <th scope="col">Name</th>     
+      <th scope="col">Location</th>
+      <th scope="col">Mobile</th>
+      <th scope="col">Total</th>
+      {{!-- <th scope="col">Password</th> --}}
+      <th scope="col">Status</th>
+      <th scope="col">Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each orders}}
+    <tr>
+      <th scope="row">{{inc @index}}</th>
+      <td>{{this.deliveryDetails.name}}</td>
+      <td>{{this.deliveryDetails.state}}</td>
+      <td>{{this.deliveryDetails.mobile}}</td>
+      <td>${{this.totalAmount}}</td>
+      {{!-- <td>******</td> --}}
+       {{!-- <td>
+        {{#if status}}
+        <p style="color: red;">{{this.status}}</p>
+        {{else}}
+                <p style="color: green;">unblock</p>
+        {{/if}}
+        <a class="btn btn-danger" href="/admin/block-user/?id={{this._id}}" onclick="return  confirm('Are you sure?')">placed</a>
+        <a class="btn btn-success" href="/admin/unblock-user?id={{this._id}}" onclick="return  confirm('Are you sure?')">Canceld</a>
+      
+      </td> --}}
+      <td>
+          {{#if status}}
+        <p style="color: rgb(0, 0, 0);">{{this.status}}</p>
+        {{else}}
+                <p style="color: green;">unblock</p>
+        {{/if}}
+        {{!-- <a class="btn btn-warning" href="/admin/order-status?id={{this._id}}&status=Dispatched" onclick="return  confirm('Are you sure?')">Dispatched</a>
+           <a class="btn btn-success" href="/admin/order-status?id={{this._id}}&status=Delivered" onclick="return  confirm('Are you sure?')">Delievered</a>
+        <a class="btn btn-danger" href="/admin/order-status/?id={{this._id}}&status=Cancelled" onclick="return  confirm('Are you sure?')">Cancel</a> --}}
+
+      </td>
+      <td>
+        <a class="btn btn-primary" href="/admin/order-details/?id={{this._id}}&product={{this.products}}">More details</a>
+      
+      </td>
+    </tr>
+    
+    {{/each}}
+    
+  </tbody>
+</table>
+  </div>
+</section>
+<!-- Button trigger modal -->
+
+
+</main>

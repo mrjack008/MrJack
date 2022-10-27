@@ -1,0 +1,86 @@
+<style>
+    .error{
+        color: red;
+    }
+</style>
+  <main class="main" id="main">
+<section>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="text-center">Edit User</h2>
+                <form action="/admin/edit-user" method="post" id="edituser">
+                    <label for="">Name</label>
+                    <input type="text" name="Name" class="form-control" value="{{Name}}"  required>
+                    <input type="text" name="id" class="form-control" style="display: none;" value="{{id}}"  required>
+
+                <div>
+                    <label for="">Email</label>
+                </div>
+                    <input type="text" name="Email" class="form-control" value="{{Email}}" required>
+                    <label for="">Phone Number</label>
+                    <input type="text" name="phone" class="form-control" value="{{phone}}" required>
+                <div>
+                    <label for="">Password</label>
+                </div>
+                <div>
+                <input type="text" name="password" class="form-control" required>
+                </div>
+
+                    <button type="submit" class="btn btn-success mt-4">submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script
+         src="https://code.jquery.com/jquery-3.6.1.js"
+         integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+         crossorigin="anonymous"
+      ></script>
+      <script
+         src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
+         integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
+         crossorigin="anonymous"
+         referrerpolicy="no-referrer"
+      ></script>
+<script>
+    $(document).ready(function () {
+        jQuery.validator.addMethod("noSpace", function (value, element) {
+            return value.indexOf(" ") < 0 && value != "";
+        }, "Space are not allowed");
+        $("#edituser").validate({
+            rules: {
+                Name: {
+                    required: true,
+                    noSpace: true,
+                },
+                Email: {
+                    required: true,
+                    noSpace: true
+                },
+                password: {
+                    required: true,
+                    noSpace: true
+                }
+
+            },
+            messages: {
+                Name: {
+                    required: 'Enter the name',
+                },
+                Email: {
+                    required: "Enter the email"
+                },
+                Password: {
+                    required: "Enter the password"
+                }
+
+                
+
+            }
+        })
+    })
+</script>
+</main>

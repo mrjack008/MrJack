@@ -1,0 +1,58 @@
+<form action="/saveaddress" method="post" id="checkout-form">
+<div class="col-lg-9">
+    <h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
+    <div class="row">
+        <div class="col-sm-12">
+            <label>Full Name</label>
+            <input type="text" class="form-control" name="name" required>
+        </div><!-- End .col-sm-6 -->
+
+        {{!-- <div class="col-sm-6">
+            <label>Last Name *</label>
+            <input type="text" class="form-control" required>
+        </div><!-- End .col-sm-6 --> --}}
+    </div><!-- End .row -->
+
+
+
+    <label>Country *</label>
+    <input type="text" class="form-control" required>
+
+    <label>Street address *</label>
+    <input type="text" name="street1" class="form-control" placeholder="House number and Street name" required>
+    <input type="text" name="street2" class="form-control" placeholder="Appartments, suite, unit etc ..." required>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <label>Town / City *</label>
+            <input type="text" name="town" class="form-control" required>
+        </div><!-- End .col-sm-6 -->
+
+        <div class="col-sm-6">
+            <label>State / County *</label>
+            <input type="text" name="state" class="form-control" required>
+        </div><!-- End .col-sm-6 -->
+    </div><!-- End .row -->
+
+    <div class="row">
+        <div class="col-sm-6">
+            <label>Postcode / ZIP *</label>
+            <input type="text" name="pincode" class="form-control" required>
+        </div><!-- End .col-sm-6 -->
+
+        <div class="col-sm-6">
+            <label>Phone *</label>
+            <input type="tel" name="phone" class="form-control" required>
+        </div><!-- End .col-sm-6 -->
+    </div><!-- End .row -->
+
+    <label>Email address *</label>
+    <input type="email" name="email" class="form-control" required>
+    <input type="text" name="userId" class="form-control" value="{{user._id}}" hidden>
+
+    <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
+        <span class="btn-text">Place Order</span>
+        <span class="btn-hover-text">Proceed to Checkout</span>
+    </button>
+    </form>
+</div><!-- End .col-lg-9 -->

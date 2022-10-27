@@ -1,0 +1,66 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<form class="form-horizontal" action="/admin/edit-banner" method="post" id="addproduct" enctype="multipart/form-data">
+    <fieldset>
+
+        <!-- Form Name -->
+        <h1 class="text-center" style="color: rgb(12, 214, 59);">Edit Banner</h1>
+
+        <!-- Text input-->
+      
+        <!-- Text input-->
+        {{!-- <div class="form-group">
+            <label class="col-md-4 control-label" for="enable_display">ENABLE DISPLAY</label>
+            <div class="col-md-4">
+                <input id="enable_display" name="enable_display" placeholder="ENABLE DISPLAY"
+                    class="form-control input-md" required="" type="text">
+
+            </div>
+        </div> --}}
+
+        <!-- Text input-->
+        {{!-- <div class="form-group">
+            <label class="col-md-4 control-label" for="comment">COMMENT</label>
+            <div class="col-md-4">
+                <input id="comment" name="comment" placeholder="COMMENT" class="form-control input-md" required=""
+                    type="text">
+
+            </div>
+        </div> --}}
+
+        <!-- Text input-->
+        {{!-- <div class="form-group">
+            <label class="col-md-4 control-label" for="approuved_by">APPROUVED BY</label>
+            <div class="col-md-4">
+                <input id="approuved_by" name="approuved_by" placeholder="APPROUVED BY" class="form-control input-md"
+                    required="" type="text">
+                --}}
+                <!-- File Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="filebutton">main_image</label>
+                    <img style="width: 100px;height: 100px;" src="/product-images/{{product._id}}.jpg" alt="">
+                    <div class="col-md-4">
+                        <input id="filebutton" name="filebutton"  class="form-control" type="file">
+                    </div>
+                </div>
+                <!-- File Button -->
+                {{!-- <div class="form-group">
+                    <label class="col-md-4 control-label" for="filebutton">auxiliary_images</label>
+                    <div class="col-md-4">
+                        <input id="filebutton" name="filebutton" class="input-file" type="file">
+                    </div>
+                </div> --}}
+
+                <!-- Button -->
+                                <input type="text" name="banner" class="form-control" value="{{banner}}" hidden>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="singlebutton">Submit</label>
+                    <div class="col-md-4">
+                        <button id="singlebutton" name="singlebutton" class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+                </div>
+    </fieldset>
+</form>

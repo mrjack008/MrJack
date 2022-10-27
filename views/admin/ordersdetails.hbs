@@ -1,0 +1,213 @@
+  <main class="main" id="main">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<form class="form-horizontal" action="/admin/order-status?id={{orders._id}}&status=Dispatched" method="post" id="addproduct" enctype="multipart/form-data">
+    <fieldset>
+
+        <!-- Form Name -->
+        <h1 class="text-center" style="color: rgb(12, 214, 59);">Order Details</h1>
+
+
+        <!-- Text input-->
+        
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="product_name">NAME</label>
+            <div class="col-md-4">
+                <input id="product_name" value="{{orders.deliveryDetails.name}}"   class="form-control input-md"
+                    required="" type="text">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        {{!-- <div class="form-group">
+            <label class="col-md-4 control-label" for="product_name_fr">PRODUCT DESCRIPTION FR</label>
+            <div class="col-md-4">
+                <input id="product_name_fr" name="product_name_fr" placeholder="PRODUCT DESCRIPTION FR"
+                    class="form-control input-md" required="" type="text">
+
+            </div>
+        </div> --}}
+
+        <!-- Select Basic -->
+        
+        {{!-- price --}}
+  
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="available_quantity">PAYMENT METHOD</label>
+            <div class="col-md-4">
+                <input id="available_quantity" style="color: rgb(0, 0, 0);font-weight: 900;font-family: 'Courier New', Courier, monospace;" value="{{orders.paymentMethod}}"   placeholder="AVAILABLE QUANTITY"
+                    class="form-control input-md" required="" type="text">
+
+            </div>
+        </div>
+      
+
+        <!-- Text input-->
+        {{!-- <div class="form-group">
+            <label class="col-md-4 control-label" for="product_weight">PRODUCT WEIGHT</label>
+            <div class="col-md-4">
+                <input id="product_weight" name="product_weight" placeholder="PRODUCT WEIGHT"
+                    class="form-control input-md" required="" type="text">
+
+            </div>
+        </div> --}}
+
+        <!-- Textarea -->
+
+
+  
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="author">Address</label>
+            <div class="col-md-4">
+          <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                 
+                    <button class="accordion-button" style="font-size: medium;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                     Details
+                    </button>
+               
+                  <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <strong>Address:{{orders.deliveryDetails.street1}},{{orders.deliveryDetails.street2}}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{orders.deliveryDetails.town}},{{orders.deliveryDetails.state}}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{orders.deliveryDetails.pincode}}</strong>
+                    </div>
+                  </div>
+                </div>
+                
+                
+              </div><!-- End Default Accordion Example -->
+
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        {{!-- <div class="form-group">
+            <label class="col-md-4 control-label" for="enable_display">ENABLE DISPLAY</label>
+            <div class="col-md-4">
+                <input id="enable_display" name="enable_display" placeholder="ENABLE DISPLAY"
+                    class="form-control input-md" required="" type="text">
+
+            </div>
+        </div> --}}
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="comment">Status</label>
+            <div class="col-md-4">
+                   <div class="col-md-4">
+                <select id="status" name="status" class="form-control">
+                    <option selected>{{orders.status}}</option>
+                    
+                    <option  value="Delivered">Delivered</option>
+                    <option value="Cancelled">Cancelled</option>
+                    <option  value="Shipped">Shipped</option>
+                    
+                </select>
+            </div>
+
+            </div>
+        </div>
+          <div class="form-group">
+                    <label class="col-md-4 control-label" for="singlebutton">Submit</label>
+                    <div class="col-md-4">
+                        <button id="singlebutton" name="singlebutton" class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+                </div>
+
+        <!-- Text input-->
+        {{!-- <div class="form-group">
+            <label class="col-md-4 control-label" for="approuved_by">APPROUVED BY</label>
+            <div class="col-md-4">
+                <input id="approuved_by" name="approuved_by" placeholder="APPROUVED BY" class="form-control input-md"
+                    required="" type="text">
+                --}}
+                <!-- File Button -->
+                
+                <!-- File Button -->
+                {{!-- <div class="form-group">
+                    <label class="col-md-4 control-label" for="filebutton">auxiliary_images</label>
+                    <div class="col-md-4">
+                        <input id="filebutton" name="filebutton" class="input-file" type="file">
+                    </div>
+                </div> --}}
+
+                <!-- Button -->
+                
+         <div class="form-group">
+                <section class="h-100 gradient-custom">
+                <div class="container py-5 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-lg-10 col-xl-8">
+                    <div class="card" style="border-radius: 10px;">
+                    
+                    {{#each products}}
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                        <p class="lead fw-normal mb-0" style="color: #a8729a;">Product Id</p>
+                        <p class="small text-muted mb-0">Product Id : {{this.product._id}}</p>
+                        </div>
+                        <div class="card shadow-0 border mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                            <div class="col-md-2">
+                                <img src="/product-images/{{this.product._id}}.jpg"
+                                class="img-fluid" alt="Phone">
+                            </div>
+                            <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                <p class="text-muted mb-0">{{this.product.product_name}}</p>
+                            </div>
+                            <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                <p class="text-muted mb-0 small">{{this.product.product_categorie}}</p>
+                            </div>
+                            <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                <p class="text-muted mb-0 small">{{this.product.author}}</p>
+                            </div>
+                            <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                <p class="text-muted mb-0 small">Qty: {{this.quantity}}</p>
+                            </div>
+                            <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                <p class="text-muted mb-0 small">${{this.product.product_price}}</p>
+                            </div>
+                            </div>
+                            
+                        </div>
+                        </div>
+                    {{/each}}
+
+                        <div class="d-flex justify-content-between pt-2">
+                        <p class="fw-bold mb-0">Order Details</p>
+                        <p class="text-muted mb-0"><span class="fw-bold me-4">Total</span> ${{orders.totalAmount}}</p>
+                        </div>
+
+                    
+
+                        <div class="d-flex justify-content-between mb-5">
+                        
+                        <p class="text-muted mb-0"><span class="fw-bold me-4">Delivery Charges</span> </p>
+                        <p class="text-muted mb-0"><span class="fw-bold me-4">Total</span> $0</p>
+                        </div>
+                    </div>
+                    <div class="card-footer border-0 px-4 py-5"
+                        style="background-color: #7b7b7b; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+                        <h5 class="d-flex align-items-center justify-content-end text-white text-uppercase mb-0">Total
+                        paid: <span class="h2 mb-0 ms-2">${{orders.totalAmount}}</span></h5>
+                    </div>
+                    </div>
+                </div>
+                </div>
+         </div>
+            </section>
+         </div>  
+    </fieldset>
+</form>
+
+</main>
