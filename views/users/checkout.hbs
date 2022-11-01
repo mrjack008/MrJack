@@ -649,7 +649,7 @@
                     swal("Already Used!", "You already claimed the coupen!", "warning");
                 }
                 else{
-     console.log(response.response[0].offer)
+                console.log(response.response[0].offer)
                 console.log(response.total)
                 total = response.total - (response.total * (response.response[0].offer / 100))
                 $('#totall').html('$' + total)

@@ -39,10 +39,10 @@ module.exports = {
           cartcount=0
         }
 
-     
-        productHelper.getProducts().then((products)=>{
-          console.log(products.products)
-          res.render('users/allproducts',{layout:'layoutus',products,user,wishcount,cartcount})
+        let categorie=await productHelper.getCategories()
+        console.log(categorie);
+        productHelper.getProducts().then((productss)=>{
+          res.render('users/allproducts',{layout:'layoutus',productss,user,wishcount,cartcount,categorie})
         })
       
       }

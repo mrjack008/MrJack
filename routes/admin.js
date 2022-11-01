@@ -153,8 +153,13 @@ router.get('/index',async (req,res)=>{
   else{
     totalsales=0
   }
+  console.log(dailysales);
+  console.log("dsfdsf");
+  monthlysales= monthsales.monthlySales;
+  yearlysales= yearlysales.yearlySales
+  console.log(yearlysales);
   console.log(totalprice,totalsales);
-  res.render('admin/index',{ layout: 'layout1' ,dailysales,totalsales,totalprice,userss,monthsum:monthsales.monthsum,monthorder:monthsales.monthorder,yearlysum:monthsales.monthsum,yearlyorder:monthsales.monthorder})
+  res.render('admin/index',{ layout: 'layout1' ,dailysales,totalsales,totalprice,userss,monthsum:monthsales.monthsum,monthorder:monthsales.monthorder,yearlysum:monthsales.monthsum,yearlyorder:monthsales.monthorder,monthlysales,yearlysales})
 })
 router.get('/delete-categorie/', (req, res) => {
   let userid = req.query.id

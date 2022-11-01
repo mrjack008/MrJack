@@ -58,6 +58,11 @@ module.exports = {
       else{
         res.redirect('/admin/login')
       }
+      },
+      saveaddress:(req,res)=>{
+        console.log(req.body);
+        productHelper.saveadress(req.body)
+        res.redirect('/checkout')
       }
 }
 

@@ -86,7 +86,7 @@
 
                             <div class="products mb-3">
                                 <div class="row justify-content-center">
-                                    {{#each products}}
+                                    {{#each productss}}
                                     <div class="col-6 col-md-4 col-lg-4 col-xl-3">
                                         <div class="product product-7 text-center">
                                             <figure class="product-media">
@@ -177,45 +177,16 @@
 									<div class="collapse show" id="widget-1">
 										<div class="widget-body">
 											<div class="filter-items filter-items-count">
+                                              {{#each categorie}}
 												<div class="filter-item">
 													<div class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" id="cat-1">
-														<label class="custom-control-label" for="cat-1">Magician</label>
+														<input type="checkbox" class="custom-control-input" id="{{this.categorie}}" >
+														<label class="custom-control-label" onclick="filter('{{this.categorie}}')" for="{{this.categorie}}">{{this.categorie}}</label>
 													</div><!-- End .custom-checkbox -->
 													<span class="item-count">3</span>
 												</div><!-- End .filter-item -->
-
-												<div class="filter-item">
-													<div class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" id="cat-2">
-														<label class="custom-control-label" for="cat-2">Cardistry</label>
-													</div><!-- End .custom-checkbox -->
-													<span class="item-count">0</span>
-												</div><!-- End .filter-item -->
-
-												<div class="filter-item">
-													<div class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" id="cat-3">
-														<label class="custom-control-label" for="cat-3">Family Cards</label>
-													</div><!-- End .custom-checkbox -->
-													<span class="item-count">4</span>
-												</div><!-- End .filter-item -->
-
-												<div class="filter-item">
-													<div class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" id="cat-4">
-														<label class="custom-control-label" for="cat-4">Plastic cards</label>
-													</div><!-- End .custom-checkbox -->
-													<span class="item-count">2</span>
-												</div><!-- End .filter-item -->
-
-												<div class="filter-item">
-													<div class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" id="cat-5">
-														<label class="custom-control-label" for="cat-5">Papper Cards</label>
-													</div><!-- End .custom-checkbox -->
-													<span class="item-count">2</span>
-												</div><!-- End .filter-item -->
+                                                {{/each}}
+												
 
 												
 
@@ -538,6 +509,13 @@
     <script src="assets/js/nouislider.min.js"></script>
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
+    <script>
+        function filter(data){
+            console.log("sfahsafj")
+            window.location="/categorie?categorie="+data;
+           
+        }
+    </script>
 </body>
 
 

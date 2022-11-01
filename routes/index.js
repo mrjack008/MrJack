@@ -33,6 +33,8 @@ const { wishlist, addWishlist, deleteWishlist } = require('../controller/userWis
 const { placeOrder, orders, orderCancel, orderDetails } = require('../controller/userOrder');
 const { phoneNumber, otp, verifyotp } = require('../controller/userOtp');
 const { paypalOrder, razorpay, coupen } = require('../controller/userPayment');
+const { saveaddress } = require('../controller/adminUsers');
+
 
 
 
@@ -67,6 +69,7 @@ router.post('/change-quantity/',changeQuantity)
 router.get('/add-to-cart/:id',addCart)
 router.post('/delete-pro',deleteCart)
 router.get('/checkout',checkout)
+router.post('/saveaddress',saveaddress)
 
 //<---------------------------------Wish functions ------------------------------->
 router.get('/wishlist',verifyLogin,wishlist)
@@ -103,16 +106,25 @@ router.post('/mail',(req,res)=>{
   })
   
 })
-router.get('/address',(req,res)=>{
-  res.render('users/addaddress',{layout:'layoutus',user:req.session.user})
-})
-router.post('/saveaddress',(req,res)=>{
-  console.log(req.body);
-  productHelper.saveadress(req.body)
-  res.redirect('/checkout')
-})
 
 
+
+router.get('/categorie',verifyLogin,async (req,res)=>{
+  console.log("haii");
+  if(req.query.categorie){
+    console.log("ASjhadshjaskjaj");
+
+    console.log(req.query.categorie);
+    wishcount=await productHelper.getWishCount(req.session.user._id)
+    cartcount=await productHelper.getCartCount(req.session.user._id)
+       productss=await productHelper.getCategoriePage(req.query.categorie)
+       let categorie=await productHelper.getCategories()
+
+       console.log(productss);
+       res.render('users/allproducts',{layout:'layoutus',productss,wishcount,cartcount,categorie})
+  }
+
+})
 
 
 

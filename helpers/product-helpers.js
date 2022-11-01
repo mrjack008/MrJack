@@ -85,6 +85,12 @@ module.exports = {
             resole(a)
         })
     },
+    getCategoriePage:(categorie)=>{
+        return new Promise (async(resolve,reject)=>{
+            let productcat =await db.get().collection(collection.PRODUCT_COLLECTION).find({product_categorie: categorie}).toArray()
+            resolve(productcat)
+        })
+    },
     getOneProduct: (id) => {
         return new Promise(async (resole, reject) => {
             if(id==undefined){
@@ -837,10 +843,12 @@ module.exports = {
     },
     coupen:(coupens,id)=>{
         return new Promise(async(resolve,reject)=>{
-            apply=await db.get().collection(collection.COUPEN_COLLECTION).find({coupen:coupens}).toArray()
+            apply=await db.get().collection(collection.COUPEN_COLLECTION).find({coupen:coupens,User:{$in:[id]}}).toArray()
+            applys=await db.get().collection(collection.COUPEN_COLLECTION).find({coupen:coupens}).toArray()
+            console.log(apply);
            console.log(id);
-           console.log(apply[0].User==id);
-            if(apply[0].User==id){ 
+
+            if(apply[0]){ 
                 console.log("inned");
                 resolve("used")
          
@@ -848,9 +856,10 @@ module.exports = {
             }
             else{
                 console.log("Outted");
-                resolve(apply)
+              
                 hehe=await db.get().collection(collection.COUPEN_COLLECTION).updateOne({ coupen: coupens }, { $addToSet: { User: id} })
                 console.log(hehe);
+                resolve(applys)
             } 
         })
     },
@@ -921,7 +930,7 @@ module.exports = {
      },
      weeksaless: () => {
         return new Promise(async (resolve, reject) => {
-           let dailysales = await db
+           let monthlySales = await db
               .get()
               .collection(collection.ORDER_COLLECTION)
               .aggregate([
@@ -961,7 +970,7 @@ module.exports = {
                  {
                     $group: {
                        _id: "$date",
-                       dailySales: { $sum: { $multiply: ["$proQty", {$toInt:"$prodPrice"}] } },
+                       monthlySales: { $sum: { $multiply: ["$proQty", {$toInt:"$prodPrice"}] } },
                        qty:{"$sum":"$proQty"},
                     },
                  },
@@ -977,25 +986,26 @@ module.exports = {
               .toArray();
          console.log("sadsasa");
          let monthsum=0;
-         dailysales.forEach(sums)
+         monthlySales.forEach(sums)
          function sums(item){
         
-           monthsum +=item.dailySales
+           monthsum +=item.monthlySales
          }
          let monthorder=0;
-         dailysales.forEach(sumss)
+         monthlySales.forEach(sumss)
          function sumss(item){
         
           monthorder +=item.qty
          }
-         total={monthsum,monthorder}
+         console.log(monthlySales);
+         total={monthsum,monthorder,monthlySales}
            resolve(total);
            console.log(total);
         });
      },
      yearlysaless: () => {
         return new Promise(async (resolve, reject) => {
-           let dailysales = await db
+           let yearlySales = await db
               .get()
               .collection(collection.ORDER_COLLECTION)
               .aggregate([
@@ -1035,7 +1045,7 @@ module.exports = {
                  {
                     $group: {
                        _id: "$date",
-                       dailySales: { $sum: { $multiply: ["$proQty", {$toInt:"$prodPrice"}] } },
+                       yearlySales: { $sum: { $multiply: ["$proQty", {$toInt:"$prodPrice"}] } },
                        qty:{"$sum":"$proQty"},
                     },
                  },
@@ -1051,18 +1061,18 @@ module.exports = {
               .toArray();
          console.log("sadsasa");
          let monthsum=0;
-         dailysales.forEach(sums)
+         yearlySales.forEach(sums)
          function sums(item){
         
-           monthsum +=item.dailySales
+           monthsum +=item.yearlySales
          }
          let monthorder=0;
-         dailysales.forEach(sumss)
+         yearlySales.forEach(sumss)
          function sumss(item){
         
           monthorder +=item.qty
          }
-         total={monthsum,monthorder}
+         total={monthsum,monthorder,yearlySales}
            resolve(total);
            console.log(total);
         });

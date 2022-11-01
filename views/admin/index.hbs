@@ -136,8 +136,8 @@
                     </li>
 
                     <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                    <li><a class="dropdown-item" onclick="monthlyReport()">This Month</a></li>
+                    <li><a class="dropdown-item" onclick="yearlyReport()">This Year</a></li>
                   </ul>
                 </div>
 
@@ -169,7 +169,7 @@
                     </li>
 
                     <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" >This Month</a></li>
                     <li><a class="dropdown-item" href="#">This Year</a></li>
                   </ul>
                 </div>
@@ -365,6 +365,7 @@ function weeklyReport(){
  chart1 = true;
 
   const data = {
+    
     labels: [
       {{#each dailysales}}'{{_id}}',{{/each}}
       
@@ -405,7 +406,7 @@ myChart = new Chart(document.getElementById('line-chart'), config)
 
 
 function monthlyReport(){
-
+console.log("sfda")
   chart2 = true;
 
 
@@ -426,7 +427,7 @@ const data = {
   };
   
   const config = {
-    type: 'line',
+    type: 'bar',
     data: data,
     options: {
       aspectRatio:3,
@@ -467,7 +468,7 @@ const data = {
   };
   
   const config = {
-    type: 'line',
+    type: 'bar',
     data: data,
     options: {
       aspectRatio:3,
