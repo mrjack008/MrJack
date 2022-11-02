@@ -47,5 +47,21 @@ module.exports = {
     CheckLogin:function (req, res, next) {
         req.session.login==false
         res.redirect('/admin/login')
+    },
+    categories:async (req,res)=>{
+      console.log("haii");
+      if(req.query.categorie){
+        console.log("ASjhadshjaskjaj");
+    
+        console.log(req.query.categorie);
+        wishcount=await productHelper.getWishCount(req.session.user._id)
+        cartcount=await productHelper.getCartCount(req.session.user._id)
+           productss=await productHelper.getCategoriePage(req.query.categorie)
+           let categorie=await productHelper.getCategories()
+    
+           console.log(productss);
+           res.render('users/allproducts',{layout:'layoutus',productss,wishcount,cartcount,categorie})
+      }
+    
     }
 }

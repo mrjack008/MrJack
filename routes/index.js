@@ -34,6 +34,8 @@ const { placeOrder, orders, orderCancel, orderDetails } = require('../controller
 const { phoneNumber, otp, verifyotp } = require('../controller/userOtp');
 const { paypalOrder, razorpay, coupen } = require('../controller/userPayment');
 const { saveaddress } = require('../controller/adminUsers');
+const { editUser, mailSubscribers, dashboard } = require('../controller/userFunctions');
+const { categories } = require('../controller/adminHome');
 
 
 
@@ -42,6 +44,10 @@ const { saveaddress } = require('../controller/adminUsers');
 
 router.get('/',userHomePage);
 router.get('/search',verifyLogin,search)
+router.get('/dashboard',verifyLogin,dashboard)
+router.get('/categorie',verifyLogin,categories)
+router.post('/edit',editUser)
+router.post('/mail',mailSubscribers)
 
 //<---------------------------------Login functions ------------------------------->
 
@@ -54,7 +60,7 @@ router.post('/home1',userLoginCheck)
 router.get("/phonenumber",phoneNumber );
 router.get("/otp",otp );
 router.get("/verify",verifyotp);
- 
+
 
 //<---------------------------------Product functions ------------------------------->
 
@@ -92,60 +98,24 @@ router.post('/paypal',paypalOrder)
 router.post('/verify-payment',razorpay)
 router.post('/coupen',coupen)
 
-router.post('/edit',(req,res)=>{
-  console.log("HHH");
-  productHelper.editUser(req.body)
-  console.log(req.body);
-  console.log(req.session.user);
-  res.redirect('/logout')
-})
-router.post('/mail',(req,res)=>{
-  console.log(req.body);
-  productHelper.subscribers(req.body).then((id)=>{
-    console.log(id);
-  })
-  
-})
-
-
-
-router.get('/categorie',verifyLogin,async (req,res)=>{
-  console.log("haii");
-  if(req.query.categorie){
-    console.log("ASjhadshjaskjaj");
-
-    console.log(req.query.categorie);
-    wishcount=await productHelper.getWishCount(req.session.user._id)
-    cartcount=await productHelper.getCartCount(req.session.user._id)
-       productss=await productHelper.getCategoriePage(req.query.categorie)
-       let categorie=await productHelper.getCategories()
-
-       console.log(productss);
-       res.render('users/allproducts',{layout:'layoutus',productss,wishcount,cartcount,categorie})
-  }
-
-})
-
-
-
-
-
-
-
-router.get('/dashboard',verifyLogin,async function(req,res){
-  console.log(req.session.user);
-
-  cartcount=await productHelper.getCartCount(req.session.user._id)
-  wishcount=await productHelper.getWishCount(req.session.user._id)
-  let orders=await productHelper.getorders(req.session.user._id)
-  
-  res.render('users/dashboard',{layout:'layoutus',user:req.session.user,orders,cartcount,wishcount})
-})
-
-
-
-
-
-
 module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
