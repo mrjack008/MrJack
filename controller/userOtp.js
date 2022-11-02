@@ -1,6 +1,4 @@
 const productHelper=require("../helpers/product-helpers");
-require('dotenv').config()
-
 var sid=process.env.TwiloId
 var auth=process.env.TwiloAuth
 var YOUR_SERVICE_ID=process.env.TwiloService
@@ -14,7 +12,7 @@ module.exports = {
         if (req.session.loggedIn) {
            res.redirect("/");
         } else {
-           res.render("users/enter-number");
+           res.render("users/enter-number");  
         }
       },
     otp:(req, res,next) => {
@@ -39,7 +37,9 @@ module.exports = {
                      //    data,
                      // });
                   }).catch((data)=>{
+                    console.log("inned");
                    console.log(data);
+                   res.redirect('/login')
                 })
                
              }

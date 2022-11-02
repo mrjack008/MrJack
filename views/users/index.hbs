@@ -409,9 +409,16 @@
                                             <a href="#">{{this.product_categorie}}</a>
                                         </div><!-- End .product-cat -->
                                         <h3 class="product-title"><a href="product.html">{{this.product_name}}</a></h3><!-- End .product-title -->
+                                       {{#if this.productoffer}}
                                         <div class="product-price">
-                                            ${{this.product_price}}
+                                           <p style="text-decoration-line: line-through;"> ${{this.product_price}}</p>
+                                             ${{this.productoffer}}
                                         </div><!-- End .product-price -->
+                                        {{else}}
+                                         <div class="product-price">
+                                            ${{this.product_price}}
+                                        </div><!-- End .product-price -->                                       
+                                        {{/if}}
                                         <div class="product-nav product-nav-dots">
                                             <a href="#" class="active" style="background: #e5dcb1;"><span class="sr-only">Color name</span></a>
                                             <a href="#" style="background: #bacbd8;"><span class="sr-only">Color name</span></a>

@@ -17,9 +17,7 @@ module.exports = {
     }
    let categorie=await productHelper.getCategories()
     productHelper.getProductcat().then((products)=>{
-      console.log(products.products)
-     console.log(products.products[0].available_quantity); 
-     console.log(quantity);
+      
       if(products.products[0].available_quantity==0){
         quantity=[{'1':1}]
         console.log(quantity);
@@ -32,7 +30,7 @@ module.exports = {
     if(req.session.loggedIn){
       console.log("hai");
       res.redirect('/')
-    }
+    } 
     else{
 
       res.render('users/login',{layout:'layout2',"loginerr":req.session.loginerror})

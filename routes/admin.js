@@ -114,6 +114,28 @@ router.get('/products', function (req, res) {
     res.redirect('/admin/login')
   }
 })
+router.get('/offerproducts', function (req, res) {
+  console.log(req.session.login);
+  if(req.session.login){
+
+  userhelpers.getProducts().then((products) => {
+
+    res.render('admin/productoffer', { layout: 'layout1', products })
+  })
+  }
+  else{
+      console.log("hellods");
+
+    res.redirect('/admin/login')
+  }
+})
+router.post('/addoffer',async function(req,res){
+  console.log(req.body);
+  await userhelpers.addOffer(req.body.productId,req.body.productOffer)
+  res.json({status:true})
+  
+
+})
 // router.post('/add-product',(req,res)=>{
 //   console.log(req.boody);
 //   console.log(req.files.filebutton);

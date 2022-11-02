@@ -61,7 +61,7 @@ module.exports = {
       },
       saveaddress:(req,res)=>{
         console.log(req.body);
-        productHelper.saveadress(req.body)
+        userhelpers.saveadress(req.body)
         res.redirect('/checkout')
       }
 }

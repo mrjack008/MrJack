@@ -52,8 +52,15 @@
                                                     </h3><!-- End .product-title -->
                                                 </div><!-- End .product -->
                                             </td>
-                                            <td class="price-col">${{this.product.product_price}}</td>
-
+                                             {{#if this.product.productoffer}}
+                                             <td class="price-col">${{this.product.productoffer}}
+                                                <p style="text-decoration: line-through;">${{this.product.product_price}}</p>
+                                             </td>
+                                             
+                                     
+                                             {{else}}
+                                                    <td class="price-col">${{this.product.product_price}}</td>
+                                             {{/if}}
                                             <td class="quantity-col">
                                                 {{!-- <div class="cart-product-quantity">
                                                     <input type="number" id="configname" id="test" class="form-control"

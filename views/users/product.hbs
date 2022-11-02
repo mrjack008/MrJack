@@ -70,9 +70,16 @@
                        
                                     </div><!-- End .rating-container -->
 
-                                    <div class="product-price">
-                                      $ {{product.product_price}}
-                                    </div><!-- End .product-price -->
+                                                                                 {{#if product.productoffer}}
+                                        <div class="product-price">
+                                           <p style="text-decoration-line: line-through;margin-right: 5px;"> ${{product.product_price}}</p>
+                                             ${{product.productoffer}}
+                                        </div><!-- End .product-price -->
+                                        {{else}}
+                                         <div class="product-price">
+                                            ${{product.product_price}}
+                                        </div><!-- End .product-price -->                                       
+                                        {{/if}}
 
                                     <div class="product-content">
                                         <p>{{product.product_description}}</p>

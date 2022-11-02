@@ -55,6 +55,13 @@ module.exports = {
             resole(products)
         })
     },
+    addOffer: (id,offer) => {
+        return new Promise(async (resole, reject) => {
+            let products =await db.get().collection(collection.PRODUCT_COLLECTION).updateOne({_id:ObjectId(id)},{$set:{productoffer:parseInt(offer)}})
+
+            resole(products)
+        })
+    },
     getCategories: () => {
         return new Promise(async (resole, reject) => {
             let products =await db.get().collection(collection.CATEGORY_COLLECTION).find().toArray()
@@ -593,13 +600,12 @@ module.exports = {
                 {
                     $group:{
                         _id:null,
-                        total:{$sum:{$multiply:['$quantity',{$toInt:'$product.product_price'}]}}
+                        total:{$sum:{$multiply:['$quantity',{$toInt:{$cond:[{$gte:['$product.productoffer',1]},'$product.productoffer','$product.product_price']}}]}},
                     }
                 }
                 
             ]).toArray()
-                console.log(total);
-                
+                console.log(total[0].total);
                 resolve(total[0].total)
            
           

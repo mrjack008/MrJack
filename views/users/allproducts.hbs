@@ -111,9 +111,16 @@
                                                     <a href="#">{{this.product_categorie}}</a>
                                                 </div><!-- End .product-cat -->
                                                 <h3 class="product-title"><a href="product.html">{{this.product_name}}</a></h3><!-- End .product-title -->
-                                                <div class="product-price">
-                                                  {{this.product_price}}
-                                                </div><!-- End .product-price -->
+                                              {{#if this.productoffer}}
+                                        <div class="product-price">
+                                           <p style="text-decoration-line: line-through;margin-right: 5px;"> ${{this.product_price}}</p>
+                                             ${{this.productoffer}}
+                                        </div><!-- End .product-price -->
+                                        {{else}}
+                                         <div class="product-price">
+                                            ${{this.product_price}}
+                                        </div><!-- End .product-price -->                                       
+                                        {{/if}}
                                                 <div class="ratings-container">
                                                     <div class="ratings">
                                                         <div class="ratings-val" style="width: 20%;"></div><!-- End .ratings-val -->
