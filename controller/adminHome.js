@@ -5,6 +5,7 @@ const { response } = require('../app');
 
 var router = express.Router();
 var error=""
+require('dotenv').config()
 
 module.exports = {
     Login:function(req,res){
@@ -24,7 +25,7 @@ module.exports = {
         }
       },
     VerifyLogin:function(req,res){
-        if(req.body.adminname==="admin"&&req.body.adminpass==="pass"){
+        if(req.body.adminname===process.env.adminusernsme&&req.body.adminpass===process.env.adminpass){
           console.log("inn");
           req.session.login=true
           req.session.admin="admin"

@@ -4,6 +4,7 @@ const { response } = require('../app');
 var router = express.Router();
 var userhelpers = require("../helpers/product-helpers")
 var error=""
+require('dotenv').config()
 /* GET users listing. */
 
 //<---------------------------------Controller Declaration ------------------------------->

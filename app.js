@@ -13,7 +13,7 @@ var app = express();
 var nocache = require('nocache')
 var session = require('express-session')
 var Handlebars = require('handlebars');
-
+require('dotenv').config()
  
 
  
@@ -43,7 +43,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: "secret-key", cookie: { maxAge: 600000 },resave:false,saveUninitialized:true, }));
+app.use(session({ secret: process.env.SessionKey, cookie: { maxAge: 600000 },resave:false,saveUninitialized:true, }));
 
 db.connect((err)=>{
   if(err) console.log("connection error"+err);

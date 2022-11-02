@@ -8,11 +8,12 @@ const { response } = require('../app')
 const { ObjectID, ObjectId } = require('bson')
 const { ConnectionCheckOutFailedEvent } = require('mongodb')
 const collections = require('../config/collections')
+require('dotenv').config()
 const Razorpay = require('razorpay');
 const { options } = require('../routes')
 var instance = new Razorpay({
-    key_id: 'rzp_test_t9mwrKuGx1MSlv',
-    key_secret: 'Gld5NaLB5Pz0bzVSD1ZFf5Bb',
+    key_id: process.env.RazorPayId,
+    key_secret: process.env.RazorPaysecret,
   });
 const paypal = require('paypal-rest-sdk');
  

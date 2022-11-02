@@ -1,7 +1,9 @@
 const productHelper=require("../helpers/product-helpers");
-var sid='ACbf0c631982540a1c06c30b2b91636c98'
-var auth='ee1c07732fa0adf3e7f340802b1339a0'
-var YOUR_SERVICE_ID='VAc9d2efa76a0997fbb18a594b24494d1d'
+require('dotenv').config()
+
+var sid=process.env.TwiloId
+var auth=process.env.TwiloAuth
+var YOUR_SERVICE_ID=process.env.TwiloService
 var client= require('twilio')(sid,auth)
 var phone
 

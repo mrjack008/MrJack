@@ -1,18 +1,16 @@
 const productHelper=require("../helpers/product-helpers");
+require('dotenv').config()
 
 
 const paypal = require('paypal-rest-sdk');
 paypal.configure({
   'mode': 'sandbox', //sandbox or live
-  'client_id': 'AY5epxoAX_7irEORDbPI-c5DxO2emxvXpbOiBOvv9UyzRdnS3TZ7cVzcmx_xhau-xKPXMI3aKP7yYm3y',
-  'client_secret': 'EPLjkVYqo5NTQvGEDA5J-01XklHtm6QA_tREg5ZPSC96rFkHA1hYgGBqAZ7w6BcB8GnBg5fz9MDa1QLK'
+  'client_id': process.env.PaypalClientID ,
+  'client_secret': process.env.PaypalSecret
 });
 
 module.exports = {
   paypalOrder:(req,res,next)=>{
-    console.log("innnnn paypalllllll");
-    console.log(req.body.grandTotal);
-    console.log(req.body);
   const create_payment_json = {
    "intent": "sale",
    "payer": {
