@@ -3,6 +3,7 @@ const productHelper=require("../helpers/product-helpers");
 
 
 
+
 module.exports = {
     userHomePage : async function(req, res, next) {
     let user=req.session.loggedIn
@@ -86,8 +87,8 @@ module.exports = {
       search:async(req,res)=>{
         wishcount=await productHelper.getWishCount(req.session.user._id)
      cartcount=await productHelper.getCartCount(req.session.user._id)
-        products=await productHelper.search(req.query.search)
-        res.render('users/allproducts',{layout:'layoutus',products,wishcount,cartcount})
+        productss=await productHelper.search(req.query.search)
+        res.render('users/allproducts',{layout:'layoutus',productss,wishcount,cartcount})
       }
 }
 
