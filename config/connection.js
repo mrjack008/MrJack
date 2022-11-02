@@ -4,7 +4,7 @@ const state={
 }
 
 module.exports.connect=function(done){
-    const url='mongodb://0.0.0.0:27017'
+    const url='mongodb+srv://mrjack:razal123@cluster0.b0a1lcv.mongodb.net/test'
     const dbname='Playingcards'
 
     mongoClient.connect(url,(err,data)=>{
