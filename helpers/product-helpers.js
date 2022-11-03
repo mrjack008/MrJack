@@ -84,12 +84,13 @@ module.exports = {
             resole(adress)
         })
     },
-    getProductcat: () => {
+    getProductcat: () => { 
         return new Promise(async (resole, reject) => {
             let productcat =await db.get().collection(collection.PRODUCT_COLLECTION).find({product_categorie: 'Magician'}).toArray()
             let products =await db.get().collection(collection.PRODUCT_COLLECTION).find().toArray()
+            let productsoffer =await db.get().collection(collection.PRODUCT_COLLECTION).find({productoffer:{$gt:1} }).toArray()
 
-            let a={productcat,products}
+            let a={productcat,products,productsoffer}
             resole(a)
         })
     },
@@ -291,6 +292,14 @@ module.exports = {
     deleteCat: (userid) => {
         return new Promise((resolve, reject) => {
             db.get().collection(collection.CATEGORY_COLLECTION).deleteOne({ _id: objectId(userid) }).then((response) => {
+                console.log(response)
+                resolve(response)
+            })
+        })
+    },
+    deleteSub: (userid) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.SUBSCRIBERS_COLLECTION).deleteOne({ _id: objectId(userid) }).then((response) => {
                 console.log(response)
                 resolve(response)
             })

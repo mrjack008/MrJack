@@ -318,7 +318,7 @@
                         <a class="nav-link" id="tab-featured-link" data-toggle="tab" href="#tab-featured" role="tab" aria-controls="tab-featured" aria-selected="false">MAGICIAN</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="tab-best-link" data-toggle="tab" href="#tab-best" role="tab" aria-controls="tab-best" aria-selected="false">Best Seller</a>
+                        <a class="nav-link" id="tab-best-link" data-toggle="tab" href="#tab-best" role="tab" aria-controls="tab-best" aria-selected="false">Offers</a>
                     </li>
                 </ul>
                 <div class="tab-content">
@@ -392,13 +392,13 @@
                                         </a>
 
                                         <div class="product-action-vertical">
-                                            <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                            <a onclick="addToWish('{{this._id}}')"  class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
                                             <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
                                             <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
                                         </div><!-- End .product-action -->
 
                                         <div class="product-action">
-                                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                            <a onclick="addToCart('{{this._id}}')" class="btn-product btn-cart"><span>add to cart</span></a>
                                         </div><!-- End .product-action -->
                                     </figure><!-- End .product-media -->
 
@@ -407,9 +407,16 @@
                                             <a href="#">{{this.product_categorie}}</a>
                                         </div><!-- End .product-cat -->
                                         <h3 class="product-title"><a href="product.html">{{this.product_name}}</a></h3><!-- End .product-title -->
+                                         {{#if this.productoffer}}
                                         <div class="product-price">
-                                            $60.00
+                                           <p style="text-decoration-line: line-through;"> ${{this.product_price}}</p>
+                                             ${{this.productoffer}}
                                         </div><!-- End .product-price -->
+                                        {{else}}
+                                         <div class="product-price">
+                                            ${{this.product_price}}
+                                        </div><!-- End .product-price -->                                       
+                                        {{/if}}
                                         <div class="product-nav product-nav-dots">
                                             <a href="#" class="active" style="background: #e5dcb1;"><span class="sr-only">Color name</span></a>
                                             <a href="#" style="background: #bacbd8;"><span class="sr-only">Color name</span></a>
@@ -425,7 +432,7 @@
 
                     <div class="tab-pane fade" id="tab-best" role="tabpanel" aria-labelledby="tab-best-link">
                         <div class="row justify-content-center">
-                            {{#each products.products}}
+                            {{#each products.productsoffer}}
                             <div class="col-6 col-md-4 col-lg-3">
                                 <div class="product product-4">
                            
@@ -437,13 +444,13 @@
                                         </a>
 
                                         <div class="product-action-vertical">
-                                            <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                            <a onclick="addToWish('{{this._id}}')" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
                                             <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
                                             <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
                                         </div><!-- End .product-action -->
 
                                         <div class="product-action">
-                                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                            <a onclick="addToCart('{{this._id}}')" class="btn-product btn-cart"><span>add to cart</span></a>
                                         </div><!-- End .product-action -->
                                     </figure><!-- End .product-media -->
 
@@ -452,9 +459,16 @@
                                             <a href="#">{{this.product_categorie}}</a>
                                         </div><!-- End .product-cat -->
                                         <h3 class="product-title"><a href="product.html">{{this.product_name}}</a></h3><!-- End .product-title -->
+                                        {{#if this.productoffer}}
                                         <div class="product-price">
-                                            $60.00
+                                           <p style="text-decoration-line: line-through;"> ${{this.product_price}}</p>
+                                             ${{this.productoffer}}
                                         </div><!-- End .product-price -->
+                                        {{else}}
+                                         <div class="product-price">
+                                            ${{this.product_price}}
+                                        </div><!-- End .product-price -->                                       
+                                        {{/if}}
                                         <div class="product-nav product-nav-dots">
                                             <a href="#" class="active" style="background: #e5dcb1;"><span class="sr-only">Color name</span></a>
                                             <a href="#" style="background: #bacbd8;"><span class="sr-only">Color name</span></a>
@@ -473,31 +487,7 @@
             </div><!-- End .container -->
             
 
-            {{!-- <div class="cta bg-image bg-dark pt-4 pb-5 d-flex justify-content-center" style="height:500px;">
-                <div class="container">
-                    <div class="row ">
-                        <div class="col-sm-6 col-md-6 col-lg-6 ">
-                            <div class="cta-heading text-center">
-                                <h3 class="cta-title text-white">Sign up for email & get 25% off </h3><!-- End .cta-title -->
-                                <p class="cta-desc text-white">Subcribe to get information about products and coupons</p><!-- End .cta-desc -->
-                            </div><!-- End .text-center -->
-                        
-                            <form action="#">
-                                <div class="input-group">
-                                    <input type="email" class="form-control" placeholder="Enter your Email Address" aria-label="Email Adress" required>
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" type="submit"><span>Subscribe</span><i class="icon-long-arrow-right"></i></button>
-                                    </div><!-- .End .input-group-append -->
-                                </div><!-- .End .input-group -->
-                            </form>
-                           
-                        </div><!-- End .col-sm-10 col-md-8 col-lg-6 -->
-                        <div style="margin-top: -40px; col-6">
-                            <img src="/product-images/banner.webp" class="img-fluid" style="height: 500px;width: 550px;">
-                        </div> 
-                    </div><!-- End .row -->
-                </div><!-- End .container -->
-            </div><!-- End .cta --> --}}
+  
             <div class="container">
                 <h2 class="title text-center mb-4">Explore Popular Categories</h2><!-- End .title text-center -->
                 
@@ -696,14 +686,14 @@
                 <div class="row no-gutters bg-white newsletter-popup-content">
                     <div class="col-xl-3-5col col-lg-7 banner-content-wrap">
                         <div class="banner-content text-center">
-                            <img src="assets/images/popup/newsletter/logo.png" class="logo" alt="logo" width="60" height="15">
+  
                             <h2 class="banner-title">get <span>25<light>%</light></span> off</h2>
-                            <p>Subscribe to the Molla eCommerce newsletter to receive timely updates from your favorite products.</p>
+                            <p>Subscribe to the MrJack to receive timely updates from your favorite products.</p>
                             <form action="#">
                                 <div class="input-group input-group-round">
-                                    <input type="email" class="form-control form-control-white" placeholder="Your Email Address" aria-label="Email Adress" required>
+                                    <input type="email" id="ss" class="form-control form-control-white" placeholder="Your Email Address" aria-label="Email Adress" required>
                                     <div class="input-group-append">
-                                        <button class="btn" type="submit"><span>go</span></button>
+                                        <button class="btn" onclick="Email('mail')" type="submit"><span>go</span></button>
                                     </div><!-- .End .input-group-append -->
                                 </div><!-- .End .input-group -->
                             </form>
@@ -771,7 +761,13 @@
     }
     function Email(){
           var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+                  mail=document.getElementById("ss").value
+                  if(mail!=" "){
+                    mail=document.getElementById("ss").value
+                  }
+                  else{
                   mail= document.getElementById("subscribe").value
+                  }
             if (mail.match(validRegex)) {
 
 
@@ -782,7 +778,8 @@
             method:'post',
             data:{email:mail},
             success:(response)=>{
-             
+             document.getElementById("ss").innerHTML = " ";
+            document.getElementById("subscribe").innerHTML = " ";
                
             }
         })

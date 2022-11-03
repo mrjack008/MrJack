@@ -199,6 +199,22 @@ else{
   res.redirect('/admin/login')
 }
 })
+router.get('/delete-subscribers/', (req, res) => {
+  let userid = req.query.id
+  if(req.session.login){
+
+  console.log("delete")
+  console.log(userid)
+  userhelpers.deleteSub(userid).then((response) => {
+    res.redirect("/admin/subscribers")
+  })
+}
+
+else{
+  res.redirect('/admin/login')
+}
+})
+
 router.get('/delete-coupen/', (req, res) => {
   let userid = req.query.id
   if(req.session.login){
