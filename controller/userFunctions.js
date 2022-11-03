@@ -21,12 +21,17 @@ module.exports={
       },
     dashboard:async function(req,res){
         console.log(req.session.user);
-      
+        let adress=await productHelper.getAddress(req.session.user._id)
         cartcount=await productHelper.getCartCount(req.session.user._id)
         wishcount=await productHelper.getWishCount(req.session.user._id)
         let orders=await productHelper.getorders(req.session.user._id)
         
-        res.render('users/dashboard',{layout:'layoutus',user:req.session.user,orders,cartcount,wishcount})
+        res.render('users/dashboard',{layout:'layoutus',user:req.session.user,orders,cartcount,wishcount,adress})
+      },
+      deleteaddress:async function(req,res){
+        console.log(req.params.id);
+        productHelper.deleteAddress(req.params.id)
+        res.redirect('/dashboard')  
       }
       
 }

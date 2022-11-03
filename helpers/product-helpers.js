@@ -280,6 +280,14 @@ module.exports = {
             })
         })
     },
+    deleteAddress: (userid) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.ADRRESS_COLLECTION).deleteOne({ _id: objectId(userid) }).then((response) => {
+                console.log(response)
+                resolve(response)
+            })
+        })
+    },
     deleteCat: (userid) => {
         return new Promise((resolve, reject) => {
             db.get().collection(collection.CATEGORY_COLLECTION).deleteOne({ _id: objectId(userid) }).then((response) => {

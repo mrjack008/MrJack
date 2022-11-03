@@ -34,7 +34,7 @@ const { placeOrder, orders, orderCancel, orderDetails } = require('../controller
 const { phoneNumber, otp, verifyotp } = require('../controller/userOtp');
 const { paypalOrder, razorpay, coupen } = require('../controller/userPayment');
 const { saveaddress } = require('../controller/adminUsers');
-const { editUser, mailSubscribers, dashboard } = require('../controller/userFunctions');
+const { editUser, mailSubscribers, dashboard, deleteaddress } = require('../controller/userFunctions');
 const { categories } = require('../controller/adminHome');
 
 
@@ -48,6 +48,7 @@ router.get('/dashboard',verifyLogin,dashboard)
 router.get('/categorie',verifyLogin,categories)
 router.post('/edit',editUser)
 router.post('/mail',mailSubscribers)
+router.get('/address/:id',deleteaddress)  
 
 //<---------------------------------Login functions ------------------------------->
 

@@ -96,13 +96,13 @@
                                                 </a>
 
                                                 <div class="product-action-vertical">
-                                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                                    <a onclick="addToWish('{{this._id}}')" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
                                                     <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
                                                     <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
                                                 </div><!-- End .product-action-vertical -->
 
                                                 <div class="product-action">
-                                                    <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                                    <a  onclick="addToCart('{{this._id}}')" class="btn-product btn-cart"><span>add to cart</span></a>
                                                 </div><!-- End .product-action -->
                                             </figure><!-- End .product-media -->
 
@@ -522,6 +522,38 @@
             window.location="/categorie?categorie="+data;
            
         }
+    </script>
+    <script>
+    function addToCart(proId){
+        $.ajax({
+            url:'/add-to-cart/'+proId,
+            method:'get',
+            success:(response)=>{
+                if(response.status){
+                    let count=$('#cart-count').html()
+                    count=parseInt(count)+1
+                    $("#cart-count").html(count)
+                }
+               
+            }
+        })
+    }
+</script>
+<script>
+    function addToWish(proId){
+        $.ajax({
+            url:'/add-to-wish/'+proId,
+            method:'get',
+            success:(response)=>{
+                if(response.status){
+                    let count=$('#wish-count').html()
+                    count=parseInt(count)+1
+                    $("#wish-count").html(count)
+                }
+               
+            }
+        })
+    }
     </script>
 </body>
 

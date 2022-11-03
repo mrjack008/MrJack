@@ -1,4 +1,4 @@
-var userhelpers = require("../helpers/product-helpers")
+var productHelper = require("../helpers/product-helpers")
 
 var express = require('express');
 const { response } = require('../app');
