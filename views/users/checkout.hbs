@@ -697,7 +697,14 @@
                 else{
                 console.log(response.response[0].offer)
                 console.log(response.total)
-                total = response.total - (response.total * (response.response[0].offer / 100))
+                let totallimit=(response.total * (response.response[0].offer / 100))
+                if(totallimit<=5){
+                    total = response.total - totallimit
+                }
+                else{
+                    total = response.total - 5
+                }
+               
                 $('#totall').html('$' + total)
                 $('#totalls').html('$' + total)
                 $('#form-total').val(total)

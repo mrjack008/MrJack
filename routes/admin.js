@@ -108,12 +108,12 @@ router.get('/products', function (req, res) {
     res.render('admin/products', { layout: 'layout1', products })
   })
   }
-  else{
+  else{  
       console.log("hellods");
 
     res.redirect('/admin/login')
   }
-})
+}) 
 router.get('/offerproducts', function (req, res) {
   console.log(req.session.login);
   if(req.session.login){

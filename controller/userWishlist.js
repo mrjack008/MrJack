@@ -9,7 +9,8 @@ module.exports = {
       wishcount=await productHelper.getWishCount(req.session.user._id)
       cartcount=await productHelper.getCartCount(req.session.user._id)
         let products=await productHelper.getWishProducts(req.session.user._id)
-        res.render('users/wishlist',{layout:'layoutus',products,wishcount,cartcount})
+        let user=req.session.user
+        res.render('users/wishlist',{layout:'layoutus',products,wishcount,cartcount,user})
       },
 
     addWishlist:(req,res)=>{

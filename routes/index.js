@@ -73,7 +73,7 @@ router.get('/allproduct',allProduct)
 
 router.get('/cart',verifyLogin,cart)
 router.post('/change-quantity/',changeQuantity)
-router.get('/add-to-cart/:id',addCart)
+router.get('/add-to-cart/:id',addCart)   
 router.post('/delete-pro',deleteCart)
 router.get('/checkout',checkout)
 router.post('/saveaddress',saveaddress)
@@ -86,7 +86,7 @@ router.delete('/delete-wish-pro',deleteWishlist)
 
 //<---------------------------------Order functions ------------------------------->
 
-router.post('/place-order',placeOrder)
+router.post('/place-order',placeOrder)  
 router.get('/orders',orders)
 router.get('/order-cancel',orderCancel)
 router.get('/order-details',orderDetails)
