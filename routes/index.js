@@ -80,7 +80,7 @@ router.post('/saveaddress',saveaddress)
 
 //<---------------------------------Wish functions ------------------------------->
 router.get('/wishlist',verifyLogin,wishlist)
-router.get('/add-to-wish/:id',addWishlist)
+router.get('/add-to-wish/:id',addWishlist)   
 router.delete('/delete-wish-pro',deleteWishlist)
 
 
@@ -91,13 +91,16 @@ router.get('/orders',orders)
 router.get('/order-cancel',orderCancel)
 router.get('/order-details',orderDetails)
 
-
+  
 //<---------------------------------Payment functions ------------------------------->
 
 
 router.post('/paypal',paypalOrder)
 router.post('/verify-payment',razorpay)
 router.post('/coupen',coupen)
+router.get('/mobile',(req,res)=>{
+  res.render('users/mobile')
+})
 
 module.exports = router;
 

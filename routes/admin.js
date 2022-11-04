@@ -481,7 +481,14 @@ router.post('/edit-banner',function(req,res){
   })
 })
 router.get('/banner',function(req,res){
-  res.render('admin/banners',{layout:'layout1'})
+  if(req.session.login){
+    res.render('admin/banners',{layout:'layout1'})
+ 
+  }
+  else{
+    res.redirect('/admin/login')
+  }
+
 })
 
 module.exports = router;
