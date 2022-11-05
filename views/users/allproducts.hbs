@@ -398,6 +398,7 @@
     </script>
     <script>
     function addToCart(proId){
+                    swal("Good job!", "Product Added to Cart!", "success");
         $.ajax({
             url:'/add-to-cart/'+proId,
             method:'get',
@@ -414,6 +415,7 @@
 </script>
 <script>
     function addToWish(proId){
+                    swal("Good job!", "Product Added to Wishlist!", "success");
         $.ajax({
             url:'/add-to-wish/'+proId,
             method:'get',

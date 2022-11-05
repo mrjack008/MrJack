@@ -54,9 +54,16 @@ module.exports = {
       if(req.query.categorie){
         console.log("ASjhadshjaskjaj");
     
-        console.log(req.query.categorie);
-        wishcount=await productHelper.getWishCount(req.session.user._id)
-        cartcount=await productHelper.getCartCount(req.session.user._id)
+        console.log(req.query.categorie); 
+        if(req.session.user){
+          wishcount=await productHelper.getWishCount(req.session.user._id)
+          cartcount=await productHelper.getCartCount(req.session.user._id)
+        }
+        else{
+          wishcount=0
+          cartcount=0
+        }
+     
            productss=await productHelper.getCategoriePage(req.query.categorie)
            let categorie=await productHelper.getCategories()
     

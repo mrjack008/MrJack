@@ -639,7 +639,7 @@
 </body>
 <script>
     function addToCart(proId){
-        console.log("in")
+            swal("Good job!", "Product Added to Cart!", "success");
         $.ajax({
             url:'/add-to-cart/'+proId,
             method:'get',
@@ -656,6 +656,8 @@
 </script>
 <script>
     function addToWish(proId){
+                    swal("Good job!", "Product Added to Wishlist!", "success");
+
         $.ajax({
             url:'/add-to-wish/'+proId,
             method:'get',

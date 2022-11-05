@@ -29,7 +29,7 @@ module.exports = {
               }
               else{
                 productHelper.generateRazorpay(orderId,totalPrice).then((response)=>{
-                  res.json({response})
+                  res.json({response,user:req.session.user})
                 })
               }
           

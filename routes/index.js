@@ -45,9 +45,9 @@ const { categories } = require('../controller/adminHome');
 router.get('/',userHomePage);
 router.get('/search',verifyLogin,search)
 router.get('/dashboard',verifyLogin,dashboard)
-router.get('/categorie',verifyLogin,categories)
+router.get('/categorie',categories)
 router.post('/edit',editUser)
-router.post('/mail',mailSubscribers)
+router.post('/mail',mailSubscribers) 
 router.get('/address/:id',deleteaddress)  
 
 //<---------------------------------Login functions ------------------------------->
