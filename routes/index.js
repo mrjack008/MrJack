@@ -43,7 +43,7 @@ const { categories } = require('../controller/adminHome');
 //<---------------------------------Home Page ------------------------------->
 
 router.get('/',userHomePage);
-router.get('/search',verifyLogin,search)
+router.get('/search',search)
 router.get('/dashboard',verifyLogin,dashboard)
 router.get('/categorie',categories)
 router.post('/edit',editUser)
@@ -58,7 +58,7 @@ router.post('/home',userSignup)
 router.post('/home1',userLoginCheck)
 
 //<---------------------------------Otp functions ------------------------------->
-router.get("/phonenumber",phoneNumber );
+router.get("/phonenumber",phoneNumber ); 
 router.get("/otp",otp );
 router.get("/verify",verifyotp);
 

@@ -83,8 +83,14 @@ module.exports = {
       
       },
       search:async(req,res)=>{
-        wishcount=await productHelper.getWishCount(req.session.user._id)
-     cartcount=await productHelper.getCartCount(req.session.user._id)
+        let cartcount=0
+        let wishcount=0
+        if(req.session.loggedIn){
+  
+          wishcount=await productHelper.getWishCount(req.session.user._id)
+         cartcount=await productHelper.getCartCount(req.session.user._id)
+          
+        }
         productss=await productHelper.search(req.query.search)
         res.render('users/allproducts',{layout:'layoutus',productss,wishcount,cartcount})
       }
