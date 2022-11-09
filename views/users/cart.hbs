@@ -22,6 +22,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-9">
+                                {{#if products}}
                                 <table class="table table-cart table-mobile">
                                     <thead>
                                         <tr>
@@ -89,7 +90,7 @@
 
                                     </tbody>
                                 </table><!-- End .table table-wishlist -->
-
+                               
                                 
                             </div><!-- End .col-lg-9 -->
                             <aside class="col-lg-3">
@@ -123,6 +124,14 @@
                         </div><!-- End .row -->
                     </div><!-- End .container -->
                 </div><!-- End .cart -->
+                 {{else}}
+                                <div class="d-flex " style="align-items: center;justify-content: center;">
+                                    <img  src="https://sarivillafashion.com/img/images/listing-5/empty-cart.gif" alt="">
+                                    <p style="font-size: 3rem; color: black;">Opps! Cart Is Empty</p>
+              
+                                </div>
+                              
+                                {{/if}}
             </div><!-- End .page-content -->
         </main><!-- End .main -->
 
@@ -311,6 +320,8 @@
     <script src="assets/js/bootstrap-input-spinner.js"></script>
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <script>
         function changeQuantity(cartId, proId, count,quantity,userId,max) {
             console.log(userId)
@@ -361,8 +372,19 @@
     <script>
         function deletepro(userid,name){
            console.log(userid)
-          
-            $.ajax({
+          swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able to recover this Product",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    swal("Your Product has been deleted!", {
+      icon: "success",
+    });
+     $.ajax({
                 url: '/delete-pro',
                 data: {
                     proid:userid
@@ -375,6 +397,11 @@
             }
             
         })
+  } else {
+    swal("Your Product is safe!");
+  }
+});
+           
         }
     </script>
  

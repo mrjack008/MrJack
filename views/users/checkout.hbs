@@ -695,15 +695,22 @@
                     swal("Already Used!", "You already claimed the coupen!", "warning");
                 }
                 else{
-                console.log(response.response[0].offer)
+                console.log(response.response[0].Min)
                 console.log(response.total)
                 let totallimit=(response.total * (response.response[0].offer / 100))
-                if(totallimit<=5){
-                    total = response.total - totallimit
+                if(response.total<response.response[0].Min){
+                     swal("Coupen Cant Use!", "Less Than Min Purchase Value!", "warning");
                 }
                 else{
-                    total = response.total - 5
+                    if(totallimit<=response.response[0].Max){
+                            total = response.total - totallimit
+                    }
+                    else{
+                        total = response.total - response.response[0].Max
+                        
+                    }
                 }
+               
                
                 $('#totall').html('$' + total)
                 $('#totalls').html('$' + total)

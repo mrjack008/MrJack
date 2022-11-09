@@ -99,7 +99,7 @@ router.post('/paypal',paypalOrder)
 router.post('/verify-payment',razorpay)
 router.post('/coupen',coupen)
 router.get('/mobile',(req,res)=>{
-  res.render('users/mobile')
+  res.render('users/cartempty')
 })
 
 module.exports = router;

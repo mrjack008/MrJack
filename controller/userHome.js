@@ -33,7 +33,7 @@ module.exports = {
       res.redirect('/')
     } 
     else{
-
+      
       res.render('users/login',{layout:'layout2',"loginerr":req.session.loginerror})
       req.session.loginerror=false
    }
@@ -64,19 +64,17 @@ module.exports = {
           if(response.status){
             req.session.loggedIn=true
             req.session.user=response.user
-           
-            res.redirect("/")
+           res.json({status:'success'})
           }
           else{
             if(response==="user is blocked"){
               req.session.loginerror="User is blocked by admin"
-              res.redirect("/login")
-      
+              res.json({status:req.session.loginerror})
             }
             else{
               req.session.loginerror="Invalid Username or password"
               console.log("hai")
-              res.redirect("/login")
+              res.json({status:req.session.loginerror})
       
             }
           

@@ -182,7 +182,9 @@ module.exports = {
             let cat=user.Name
             let price=user.Price
             let d=user.Description
-            db.get().collection(collection.COUPEN_COLLECTION).insert({coupen:cat,offer:price,Description:d,User:[]}).then((data) => {
+            let min=user.Min
+            let max=user.Max
+            db.get().collection(collection.COUPEN_COLLECTION).insert({coupen:cat,offer:price,Description:d,User:[],Min:min,Max:max}).then((data) => {
                 console.log(data);
                 callback(data)
             })
@@ -727,8 +729,11 @@ module.exports = {
                 sortdate:datez
             }
             db.get().collection(collection.ORDER_COLLECTION).insertOne(orderObj).then((response)=>{
-                db.get().collection(collection.CART_COLLECTION).remove({user:objectId(order.userId)})
-                console.log("orders:",response.insertedId);
+                if(orderObj.status=="Placed"){
+                    db.get().collection(collection.CART_COLLECTION).remove({user:objectId(order.userId)})
+                    console.log("orders:",response.insertedId);
+                    
+                }
                 resolve(response.insertedId)
             })
         })
@@ -746,6 +751,8 @@ module.exports = {
     },
     getorders:(userId)=>{
         return new Promise(async(resolve,reject)=>{
+            await db.get().collection(collection.ORDER_COLLECTION).remove({paymentMethod:"Razor Pay",status:"pending"})
+
             let orders=await db.get().collection(collection.ORDER_COLLECTION).find({userId:objectId(userId)}).sort({sortdate:-1}).toArray()
 
             resolve(orders)
@@ -860,8 +867,16 @@ module.exports = {
                 $set:{
                     status:'Placed'
                 }
-            }).then(()=>{
-                resolve()
+            }).then(async(data)=>{
+                datas=await db.get().collection(collection.ORDER_COLLECTION).find({_id:objectId(orderId)}).toArray()
+                console.log("dsdsfds");
+                console.log(datas[0]);
+                console.log(datas[0].status=="Placed");
+                if(datas[0].status=="Placed"){
+                    db.get().collection(collection.CART_COLLECTION).remove({user:objectId(datas[0].userId)})
+                    
+                } 
+                resolve() 
             })
         })
     },

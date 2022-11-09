@@ -18,12 +18,12 @@
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
-		<form action="/home1" method="post">
+		<form action="/home1" method="post" id="login-form">
 
 			<h1>Sign in</h1>
 
 			<input type="text" placeholder="Name" name="Name" required/>
-			<input type="password" placeholder="Password" name="password" required/>
+			<input type="password" id="signinpassword" placeholder="Password" name="password" required/>
 			<a href="#">Forgot your password?</a>
 			<button>Sign In</button>
             <div class="form-choice">
@@ -37,9 +37,7 @@
 									</div><!-- End .row -->
             </div><!-- End .form-choice -->
 
-		{{#if loginerr}}
-				<p class="error" style="color: red;">{{loginerr}}</p>
-		{{/if}}
+				<p class="error" id="error" style="color: red;"></p>
 		</form>
 	</div>
 	<div class="overlay-container">
@@ -135,4 +133,25 @@
     signInButton.addEventListener('click', () => {
       container.classList.remove("right-panel-active");
     });
+  </script>
+  <script>
+    $('#login-form').submit((e) => {
+		e.preventDefault()
+		$.ajax({
+			url: '/home1',
+			method: 'post',
+			data: $("#login-form").serialize(),
+			success: (status) => {
+				console.log(status.status)
+				console.log(window.history)
+				if (status.status == 'success') {
+					window.history.back()
+				}
+				else {
+					document.getElementById("error").innerHTML = status.status;
+					document.getElementById("signinpassword").value = "";
+				}
+			}
+		})
+	})
   </script>
