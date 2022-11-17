@@ -846,6 +846,7 @@ module.exports = {
         })
     },
     verifyPayment:(details)=>{
+        console.log(details);
         return new Promise((resolve,reject)=>{
             const crypto = require('crypto')
             let hmac = crypto.createHmac('sha256','Gld5NaLB5Pz0bzVSD1ZFf5Bb')
@@ -854,7 +855,7 @@ module.exports = {
             hmac=hmac.digest('hex')
             if(hmac==details['payment[razorpay_signature]']){
                 resolve()
-            }else{
+            }else{ 
                 reject()
             }
         })
